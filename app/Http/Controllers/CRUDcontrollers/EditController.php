@@ -14,11 +14,13 @@ class EditController extends Controller
 {
     public function edit_AP(Request $request, AP $ap): RedirectResponse {
         $request->validate([
-            'name'=>'required|unique:a_p_s,name'
+            'name'=>'required|unique:a_p_s,name',
+            'pop_id'=>'required'
         ]);
 
         $ap->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'pop_id'=> $request->pop_id
         ]);
 
         return redirect(route('home'));

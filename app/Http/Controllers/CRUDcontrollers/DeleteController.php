@@ -15,6 +15,7 @@ class DeleteController extends Controller
     public function delete_AP(Request $request, AP $ap): RedirectResponse {
 
         $ap->delete();
+        Link::where('ap_id', $ap->id)->delete();
 
         return redirect(route('home'));
     }
@@ -22,6 +23,7 @@ class DeleteController extends Controller
     public function delete_Point(Request $request, Point $point): RedirectResponse {
 
         $point->delete();
+        Link::where('point_id', $point->id)->delete();
 
         return redirect(route('home'));
     }

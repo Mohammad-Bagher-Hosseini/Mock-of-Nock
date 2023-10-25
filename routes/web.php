@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::middleware('auth')->name('home')->get('/', [HomeController::class, 'get_home']);
+Route::middleware('auth')->name('home')->get('/', [HomeController::class, 'get_home']);
 Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->name('admin.')->group(function(){
     Route::prefix('/create')->name('create.')->group(function () {
 
@@ -59,17 +59,17 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->name('admin.')->gro
     });
 
     Route::prefix('/edit')->name('edit.')->group(function () {
-        Route::get('/AP', [HomeController::class, 'get_edit_AP'])->name('get_AP');
-        Route::post('/AP', [EditController::class, 'edit_AP'])->name('post_AP');
+        Route::get('/AP/{ap}', [HomeController::class, 'get_edit_AP'])->name('get_AP');
+        Route::post('/AP/{ap}', [EditController::class, 'edit_AP'])->name('post_AP');
 
-        Route::get('/Point', [HomeController::class, 'get_edit_Point'])->name('get_Point');
-        Route::post('/Point', [EditController::class, 'edit_Point'])->name('post_Point');
+        Route::get('/Point/{point}', [HomeController::class, 'get_edit_Point'])->name('get_Point');
+        Route::post('/Point/{point}', [EditController::class, 'edit_Point'])->name('post_Point');
 
-        Route::get('/Pop', [HomeController::class, 'get_edit_Pop'])->name('get_Pop');
-        Route::post('/Pop', [EditController::class, 'edit_Pop'])->name('post_Pop');
+        Route::get('/Pop/{pop}', [HomeController::class, 'get_edit_Pop'])->name('get_Pop');
+        Route::post('/Pop/{pop}', [EditController::class, 'edit_Pop'])->name('post_Pop');
 
-        Route::get('/Link', [HomeController::class, 'get_edit_Link'])->name('get_Link');
-        Route::post('/Link', [EditController::class, 'edit_Link'])->name('post_Link');
+        Route::get('/Link/{link}', [HomeController::class, 'get_edit_Link'])->name('get_Link');
+        Route::post('/Link/{link}', [EditController::class, 'edit_Link'])->name('post_Link');
     });
 
 });

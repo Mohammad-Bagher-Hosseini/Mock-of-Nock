@@ -16,7 +16,7 @@ class ApSeeder extends Seeder
         for ($i=0; $i < 20; $i++) {
             AP::create([
                 'name'=> fake()->name(),
-                'pop_id'=> (int) $i/4
+                'pop_id'=> floor($i/4) + 1
             ]);
         }
     }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RolePermissionSeeder extends Seeder
 {
@@ -13,6 +14,8 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
+
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $permissions = [
             'create_pop',
@@ -33,9 +36,11 @@ class RolePermissionSeeder extends Seeder
             'delete_link',
         ];
 
-        Permission::insert(array_map(function($permission){
+        foreach (array_map(function($permission){
             return ['name' => $permission];
-        }, $permissions));
+        }, $permissions) as $permission) {
+            Permission::create($permission);
+        }
 
         $admin = Role::create(['name' => 'Admin']);
         $admin->syncPermissions([
