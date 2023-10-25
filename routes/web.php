@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware('auth')->name('home')->get('/', [HomeController::class, 'get_home']);
+// Route::middleware('auth')->name('home')->get('/', [HomeController::class, 'get_home']);
 Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->name('admin.')->group(function(){
     Route::prefix('/create')->name('create.')->group(function () {
 
@@ -75,10 +75,10 @@ Route::prefix('/admin')->middleware(['auth', 'role:Admin'])->name('admin.')->gro
 });
 
 Route::prefix('/show')->name('show.')->group(function () {
-    Route::get('/AP', [ShowController::class, 'show_AP'])->name('AP');
-    Route::get('/Point', [ShowController::class, 'show_Point'])->name('Point');
-    Route::get('/Pop', [ShowController::class, 'show_Pop'])->name('Pop');
-    Route::get('/Link', [ShowController::class, 'show_Link'])->name('Link');
+    Route::get('/AP/{ap}', [ShowController::class, 'show_AP'])->name('AP');
+    Route::get('/Point/{point}', [ShowController::class, 'show_Point'])->name('Point');
+    Route::get('/Pop/{pop}', [ShowController::class, 'show_Pop'])->name('Pop');
+    Route::get('/Link/{link}', [ShowController::class, 'show_Link'])->name('Link');
 });
 
 require __DIR__.'/auth.php';

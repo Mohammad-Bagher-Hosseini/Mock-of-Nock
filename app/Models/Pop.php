@@ -10,6 +10,8 @@ class Pop extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function APs() : HasMany {
         return $this->hasMany(AP::class);
     }

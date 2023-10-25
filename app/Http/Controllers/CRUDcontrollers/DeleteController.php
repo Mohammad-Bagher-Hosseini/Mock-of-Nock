@@ -13,49 +13,29 @@ use Illuminate\Http\Request;
 class DeleteController extends Controller
 {
     public function delete_AP(Request $request, AP $ap): RedirectResponse {
-        $request->validate([
 
-        ]);
-
-        AP::create([
-
-        ]);
+        $ap->delete();
 
         return redirect(route('home'));
     }
 
     public function delete_Point(Request $request, Point $point): RedirectResponse {
-        $request->validate([
 
-        ]);
-
-        AP::create([
-
-        ]);
+        $point->delete();
 
         return redirect(route('home'));
     }
 
     public function delete_Pop(Request $request, Pop $pop): RedirectResponse {
-        $request->validate([
 
-        ]);
-
-        AP::create([
-
-        ]);
+        $pop->delete();
 
         return redirect(route('home'));
     }
 
     public function delete_Link(Request $request, Link $link): RedirectResponse {
-        $request->validate([
 
-        ]);
-
-        AP::create([
-
-        ]);
+        $link->delete();
 
         return redirect(route('home'));
     }

@@ -10,12 +10,6 @@
     <form action="{{route('admin.create.post_Pop')}}" method="post">
         name : <br>
         <input type="text" name="name"><br><br>
-        aps : <br>
-        <select name="ap_id" multiple>
-            @foreach (App\Models\AP::all() as $ap)
-                <option value="{{$ap->id}}">{{$ap->name}}</option>
-            @endforeach
-        </select><br><br>
         <input type="submit" value="create">
     </form>
 </body>

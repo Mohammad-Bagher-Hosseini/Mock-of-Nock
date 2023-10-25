@@ -14,11 +14,11 @@ class EditController extends Controller
 {
     public function edit_AP(Request $request, AP $ap): RedirectResponse {
         $request->validate([
-
+            'name'=>'required|unique:a_p_s,name'
         ]);
 
-        AP::create([
-
+        $ap->update([
+            'name' => $request->name
         ]);
 
         return redirect(route('home'));
@@ -26,11 +26,16 @@ class EditController extends Controller
 
     public function edit_Point(Request $request, Point $point): RedirectResponse {
         $request->validate([
-
+            'name'=>'required|unique:points,name',
+            'ap_id'=>'required|unique:links,ap_id'
         ]);
 
-        AP::create([
+        $point->update([
+            'name' => $request->name,
+        ]);
 
+        Link::where('point_id', $point->id)->update([
+            'ap_id'=>$request->ap_id
         ]);
 
         return redirect(route('home'));
@@ -38,11 +43,11 @@ class EditController extends Controller
 
     public function edit_Pop(Request $request, Pop $pop): RedirectResponse {
         $request->validate([
-
+            'name'=>'required|unique:pops,name'
         ]);
 
-        AP::create([
-
+        $pop->update([
+            'name'=>$request->name
         ]);
 
         return redirect(route('home'));

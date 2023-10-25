@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -14,9 +13,8 @@ class RolePermissionSeeder extends Seeder
      */
     public function run(): void
     {
-        Permission::insert(array_map(function($permission){
-            return ['name' => $permission];
-        }, [
+
+        $permissions = [
             'create_pop',
             'show_pop',
             'update_pop',
@@ -33,7 +31,11 @@ class RolePermissionSeeder extends Seeder
             'show_link',
             'update_link',
             'delete_link',
-        ]));
+        ];
+
+        Permission::insert(array_map(function($permission){
+            return ['name' => $permission];
+        }, $permissions));
 
         $admin = Role::create(['name' => 'Admin']);
         $admin->syncPermissions([
@@ -54,6 +56,7 @@ class RolePermissionSeeder extends Seeder
             'update_link',
             'delete_link',
         ]);
+
         $user = Role::create(['name' => 'User']);
         $user->syncPermissions([
             'show_pop',

@@ -11,6 +11,8 @@ class AP extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'pop_id'];
+
     public function pop(): BelongsTo {
         return $this->belongsTo(Pop::class);
     }

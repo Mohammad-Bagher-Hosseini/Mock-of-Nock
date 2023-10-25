@@ -10,6 +10,8 @@ class Point extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function ap(): HasOneThrough {
         return $this->hasOneThrough(AP::class, Link::class, 'point_id', 'id', 'id', 'ap_id');
     }

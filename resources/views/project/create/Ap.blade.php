@@ -10,10 +10,10 @@
     <form action="{{route('admin.create.post_AP')}}" method="post">
         name : <br>
         <input type="text" name="name"><br><br>
-        point : <br>
-        <select name="point_id">
-            @foreach (App\Models\Point::all() as $point)
-                <option value="{{$point->id}}">{{$point->name}}</option>
+        pop :
+        <select name="pop_id">
+            @foreach (App\Models\Pop::all() as $pop)
+                <option value="{{$pop->id}}">{{$pop->name}}</option>
             @endforeach
         </select><br><br>
         <input type="submit" value="create">
