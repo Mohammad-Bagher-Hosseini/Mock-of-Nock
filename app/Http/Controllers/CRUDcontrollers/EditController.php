@@ -7,8 +7,10 @@ use App\Models\AP;
 use App\Models\Link;
 use App\Models\Point;
 use App\Models\Pop;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EditController extends Controller
 {
@@ -23,7 +25,7 @@ class EditController extends Controller
             'pop_id'=> $request->pop_id
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.AP'));
     }
 
     public function edit_Point(Request $request, Point $point): RedirectResponse {
@@ -40,7 +42,7 @@ class EditController extends Controller
             'ap_id'=>$request->ap_id
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.Point'));
     }
 
     public function edit_Pop(Request $request, Pop $pop): RedirectResponse {
@@ -52,7 +54,7 @@ class EditController extends Controller
             'name'=>$request->name
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.Pop'));
     }
 
     public function edit_Link(Request $request, Link $link): RedirectResponse {
@@ -64,6 +66,22 @@ class EditController extends Controller
 
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.Link'));
+    }
+
+    public function edit_User(Request $request, User $user):RedirectResponse {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|confirmed'
+        ]);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect(route('index.User'));
     }
 }

@@ -7,9 +7,10 @@ use App\Models\AP;
 use App\Models\Link;
 use App\Models\Point;
 use App\Models\Pop;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 
 class CreateController extends Controller
 {
@@ -24,7 +25,7 @@ class CreateController extends Controller
             'pop_id' => $request->pop_id
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.AP'));
     }
 
     public function create_Pop(Request $request): RedirectResponse {
@@ -36,7 +37,7 @@ class CreateController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.Pop'));
     }
 
     public function create_Point(Request $request): RedirectResponse {
@@ -56,7 +57,7 @@ class CreateController extends Controller
             'ap_id' => $request->ap_id
         ]);
 
-        return redirect(route('home'));
+        return redirect(route('index.Point'));
     }
 
     public function create_Link(Request $request): RedirectResponse {
@@ -64,10 +65,26 @@ class CreateController extends Controller
 
         ]);
 
-        AP::create([
 
+
+        return redirect(route('index.Link'));
+    }
+
+    public function create_User(Request $request): RedirectResponse {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|confirmed'
         ]);
 
-        return redirect(route('home'));
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $user->assignRole('User');
+
+        return redirect(route('index.User'));
     }
 }

@@ -6,6 +6,7 @@ use App\Models\AP;
 use App\Models\Link;
 use App\Models\Point;
 use App\Models\Pop;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
@@ -28,10 +29,13 @@ class HomeController extends Controller
         return view('project.create.Link');
     }
 
+    public function get_create_User(): View {
+        return view('project.create.User');
+    }
+
     public function get_edit_AP(AP $ap): View {
         return view('project.edit.Ap', ['ap' => $ap]);
     }
-
     public function get_edit_Point(Point $point): View {
         return view('project.edit.Point', ['point' => $point]);
     }
@@ -40,5 +44,8 @@ class HomeController extends Controller
     }
     public function get_edit_Link(Link $link): View {
         return view('project.edit.Link', ['link' => $link]);
+    }
+    public function get_edit_User(User $user) : View {
+        return view('project.edit.User', ['user' => $user]);
     }
 }

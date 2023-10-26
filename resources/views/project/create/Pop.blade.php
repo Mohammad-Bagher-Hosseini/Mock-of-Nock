@@ -7,9 +7,11 @@
 @section('content')
 <br><br>
 <form action="{{route('admin.edit.post_Pop')}}" method="post">
+    @csrf
     <div class="mb-3">
       <label for="name" class="form-label">Name : </label>
-      <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+      <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+      <x-input-error :messages="$errors->get('name')" class="mt-2" />
     </div>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
 </form>

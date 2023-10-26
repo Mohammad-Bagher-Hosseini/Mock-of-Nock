@@ -16,6 +16,33 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('index.AP')" :active="request()->routeIs('index.AP')">
+                        {{ __('APs') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('index.Point')" :active="request()->routeIs('index.Point')">
+                        {{ __('Points') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('index.Pop')" :active="request()->routeIs('index.Pop')">
+                        {{ __('Pops') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('index.Link')" :active="request()->routeIs('index.Link')">
+                        {{ __('Links') }}
+                    </x-nav-link>
+                </div>
+                @role('Admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('index.User')" :active="request()->routeIs('index.User')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    </div>
+                @endrole
             </div>
 
             <!-- Settings Dropdown -->
