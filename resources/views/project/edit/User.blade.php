@@ -1,7 +1,7 @@
 @extends('dashboard')
 
 @section('header_name')
-    Create User
+    Edit User
 @endsection
 
 @section('content')
@@ -20,12 +20,12 @@
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password : </label>
-      <input type="text" class="form-control" name="password" id="password" aria-describedby="emailHelp">
+      <input type="password" class="form-control" name="password" id="password" aria-describedby="emailHelp">
       <x-input-error :messages="$errors->get('password')" class="mt-2" />
     </div>
     <div class="mb-3">
       <label for="confirm" class="form-label">Confirm Password : </label>
-      <input type="text" class="form-control" name="confirm" id="confirm" aria-describedby="emailHelp">
+      <input type="password" class="form-control" name="confirm" id="confirm" aria-describedby="emailHelp">
       <x-input-error :messages="$errors->get('confirm')" class="mt-2" />
     </div>
 

@@ -82,7 +82,8 @@ class EditController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users,email,' . $user->id,
-            'password' => 'required|confirmed'
+            'password' => 'required|required_with:confirm|same:confirm|min:8',
+            'confirm' => 'required|min:8'
         ]);
 
         $user->update([
@@ -90,7 +91,6 @@ class EditController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-
         return redirect(route('index.User'));
     }
 }
