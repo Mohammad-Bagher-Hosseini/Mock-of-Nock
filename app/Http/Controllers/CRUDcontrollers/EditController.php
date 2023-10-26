@@ -16,7 +16,7 @@ class EditController extends Controller
 {
     public function edit_AP(Request $request, AP $ap): RedirectResponse {
         $request->validate([
-            'name'=>'required|unique:a_p_s,name',
+            'name'=>'required|unique:a_p_s,name,' . $ap->id,
             'pop_id'=>'required'
         ]);
 
@@ -30,7 +30,7 @@ class EditController extends Controller
 
     public function edit_Point(Request $request, Point $point): RedirectResponse {
         $request->validate([
-            'name'=>'required|unique:points,name',
+            'name'=>'required|unique:points,name,' . $point->id,
             'ap_id'=>'required|unique:links,ap_id'
         ]);
 
@@ -47,7 +47,7 @@ class EditController extends Controller
 
     public function edit_Pop(Request $request, Pop $pop): RedirectResponse {
         $request->validate([
-            'name'=>'required|unique:pops,name'
+            'name'=>'required|unique:pops,name,' . $pop->id
         ]);
 
         $pop->update([
@@ -72,7 +72,7 @@ class EditController extends Controller
     public function edit_User(Request $request, User $user):RedirectResponse {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users,email',
+            'email' => 'required|unique:users,email,' . $user->id,
             'password' => 'required|confirmed'
         ]);
 

@@ -17,7 +17,7 @@ class CreateController extends Controller
     public function create_AP(Request $request): RedirectResponse {
         $request->validate([
             'name'=> 'required|unique:a_p_s,name',
-            'pop_id' => 'required|unique:links,pop_id'
+            'pop_id' => 'required'
         ]);
 
         $ap = AP::create([

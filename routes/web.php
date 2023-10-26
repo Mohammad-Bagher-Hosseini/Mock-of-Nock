@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CRUDcontrollers\CreateController;
 use App\Http\Controllers\CRUDcontrollers\DeleteController;
+use App\Http\Controllers\CRUDcontrollers\EditController;
 use App\Http\Controllers\CRUDcontrollers\ShowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;

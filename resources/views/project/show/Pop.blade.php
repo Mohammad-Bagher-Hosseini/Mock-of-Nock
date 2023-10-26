@@ -10,7 +10,7 @@
         <td>id : {{$pop->id}}</td>
         <td>name : {{$pop->name}}</td>
         @foreach ($pop->APs as $ap)
-            <td>ap_id : <a href="{{route('show.AP', ['ap'=> $ap->id])}}">{{$ap->id}}</a></td>
+            <td>ap_id : <a href="{{route('show.AP', ['ap'=> $ap->id])}}"><button class="btn btn-outline-primary btn-sm">{{$ap->id}}</button></a></td>
         @endforeach
         <td>created_at : {{$pop->created_at}}</td>
         <td>updated_at : {{$pop->updated_at}}</td>
