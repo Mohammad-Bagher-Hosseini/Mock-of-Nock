@@ -14,7 +14,7 @@ class PointSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 20; $i++) {
+        for ($i=1; $i <= 20; $i++) {
             Point::create([
                 'name'=> fake()->name()
             ]);

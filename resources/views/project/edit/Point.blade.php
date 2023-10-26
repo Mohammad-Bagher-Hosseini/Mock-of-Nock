@@ -17,10 +17,11 @@
         <label for="ap_id" class="form-label">AP : </label>
         <select name="ap_id" id="ap_id" class="form-select">
             @foreach (App\Models\AP::all() as $ap)
-            @if ($point->ap->id == $ap->id)
+            @if (($point->ap != null)&&($point->ap->id == $ap->id))
                 <option value="{{$ap->id}}" selected>{{$ap->name}}</option>
-            @endif
+            @elseif ($ap->point == null)
                 <option value="{{$ap->id}}">{{$ap->name}}</option>
+            @endif
             @endforeach
         </select>
         <x-input-error :messages="$errors->get('ap_id')" class="mt-2" />

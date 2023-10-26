@@ -18,6 +18,6 @@ class AP extends Model
     }
 
     public function point(): HasOneThrough {
-        return $this->hasOneThrough(AP::class, Link::class, 'ap_id', 'id', 'id', 'point_id');
+        return $this->hasOneThrough(Point::class, Link::class, 'ap_id', 'id', 'id', 'point_id');
     }
 }

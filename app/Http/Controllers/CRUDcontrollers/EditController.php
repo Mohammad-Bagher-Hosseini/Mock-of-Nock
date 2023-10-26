@@ -38,9 +38,18 @@ class EditController extends Controller
             'name' => $request->name,
         ]);
 
-        Link::where('point_id', $point->id)->update([
-            'ap_id'=>$request->ap_id
-        ]);
+        $link = Link::where('point_id', $point->id)->first();
+
+        if($link == null){
+            Link::create([
+                'ap_id' => $request->ap_id,
+                'point_id' => $point->id
+            ]);
+        } else {
+            $link->update([
+                'ap_id' => $request->ap_id
+            ]);
+        }
 
         return redirect(route('index.Point'));
     }

@@ -19,8 +19,9 @@
             @foreach (App\Models\Pop::all() as $pop)
             @if ($ap->pop->id == $pop->id)
                 <option value="{{$pop->id}}" selected>{{$pop->name}}</option>
-            @endif
+            @else
                 <option value="{{$pop->id}}">{{$pop->name}}</option>
+            @endif
             @endforeach
         </select>
         <x-input-error :messages="$errors->get('pop_id')" class="mt-2" />
